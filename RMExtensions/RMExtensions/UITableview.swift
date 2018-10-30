@@ -9,7 +9,7 @@
 import UIKit
 
 extension UITableView {
-    func refresh(){
+    public func refresh(){
         self.beginUpdates()
         self.endUpdates()
     }

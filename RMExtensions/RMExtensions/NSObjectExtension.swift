@@ -9,7 +9,7 @@
 import UIKit
 
 extension NSObject {
-    func getJSONObject<T : Encodable>(obj : T)->[String : Any]?{
+    public func getJSONObject<T : Encodable>(obj : T)->[String : Any]?{
         let jsonEncoder = JSONEncoder()
         jsonEncoder.outputFormatting = .prettyPrinted
         do{

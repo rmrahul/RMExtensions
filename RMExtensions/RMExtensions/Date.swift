@@ -33,9 +33,9 @@ struct DateFormats {
     static let     DATE_FORMAT_MM_SLASH_YY             = "MM/yy"
 }
 
-extension Date {
+public extension Date {
     
-    func convertDateFormateToOrdinary() -> String{
+    public func convertDateFormateToOrdinary() -> String{
         // Day
         let calendar = Calendar.current
         let anchorComponents = calendar.dateComponents([.day, .month, .year], from: self)
@@ -59,46 +59,46 @@ extension Date {
         return day + " " + newDate
     }
     
-    func addMonth(n: Int) -> Date {
+    public func addMonth(n: Int) -> Date {
         let cal = NSCalendar.current
         return cal.date(byAdding: .month, value: n, to: self)!
     }
-    func addDay(n: Int) -> Date {
+    public func addDay(n: Int) -> Date {
         let cal = NSCalendar.current
         return cal.date(byAdding: .day, value: n, to: self)!
     }
-    func addSec(n: Int) -> Date {
+    public func addSec(n: Int) -> Date {
         let cal = NSCalendar.current
         return cal.date(byAdding: .second, value: n, to: self)!
     }
     
-    func getCurrentDate() -> Date {
+    public func getCurrentDate() -> Date {
         
         let dateString = self.getStringFromDate(date: Date(), dateFormatter: DateFormats.DD_MMM_YYYY_FORMAT)
         let date = self.getDateFromString(dateString: dateString, dateFormatter: DateFormats.DD_MMM_YYYY_FORMAT)
         return date
     }
     
-    func getCurrentTime() -> Date {
+    public func getCurrentTime() -> Date {
         
         let dateString = self.getStringFromDate(date: Date(), dateFormatter: DateFormats.FULL_DATE_FORMAT)
         let date = self.getDateFromString(dateString: dateString, dateFormatter: DateFormats.FULL_DATE_FORMAT)
         return date
     }
     
-    func getDateFromString(dateString: String, dateFormatter: String) -> Date {
+    public func getDateFromString(dateString: String, dateFormatter: String) -> Date {
         
         let formatter = self.getDateFormatter(formatter: dateFormatter)
         return formatter.date(from: dateString)!
     }
     
-    func getStringFromDate(date: Date, dateFormatter: String) -> String {
+    public func getStringFromDate(date: Date, dateFormatter: String) -> String {
         
         let formatter = self.getDateFormatter(formatter: dateFormatter)
         return formatter.string(from: date)
     }
     
-    func getStringFromDateString(dateString: String, dateFormatter: String, stringDateFormatter: String) -> String {
+    public func getStringFromDateString(dateString: String, dateFormatter: String, stringDateFormatter: String) -> String {
         
         let date = self.getDateFromString(dateString: dateString, dateFormatter: stringDateFormatter)
         let mnthNumber = date.getMonthNumber()
@@ -117,35 +117,35 @@ extension Date {
         return (dateStr + mnth + yearStr)
     }
     
-    func getYearNumber() -> Int {
+    public func getYearNumber() -> Int {
         
         var calender = Calendar.current
         calender.timeZone = TimeZone.init(abbreviation: TIME_ZONE)!
         return calender.component(.year, from: self)
     }
     
-    func getMonthNumber() -> Int {
+    public func getMonthNumber() -> Int {
         
         var calender = Calendar.current
         calender.timeZone = TimeZone.init(abbreviation: TIME_ZONE)!
         return calender.component(.month, from: self)
     }
     
-    func getDayNumner() -> Int {
+    public func getDayNumner() -> Int {
         
         var calender = Calendar.current
         calender.timeZone = TimeZone.init(abbreviation: TIME_ZONE)!
         return calender.component(.day, from: self)
     }
     
-    func getHour() -> Int {
+    public func getHour() -> Int {
         
         let calender = Calendar.current
         //calender.timeZone = TimeZone.init(abbreviation: TIME_ZONE)!
         return calender.component(.hour, from: self)
     }
     
-    func getMinute() -> Int {
+    public func getMinute() -> Int {
         
         var calender = Calendar.current
         calender.timeZone = TimeZone.init(abbreviation: TIME_ZONE)!
@@ -154,14 +154,14 @@ extension Date {
     
     //MARK:- Private methods
     
-    func getMonthsIndex(index: Int) -> String {
+    public func getMonthsIndex(index: Int) -> String {
         
         let months = ["Jan","Feb","March","April","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"]
         
         return months[index]
     }
     
-    func getDateFormatter(formatter: String) -> DateFormatter{
+    public func getDateFormatter(formatter: String) -> DateFormatter{
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = formatter
@@ -172,7 +172,7 @@ extension Date {
         return dateFormatter
     }
     
-    static func checkForDate(dateString: String) -> String {
+    public static func checkForDate(dateString: String) -> String {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-mm-dd'T'HH:mm:ssZ"
@@ -187,7 +187,7 @@ extension Date {
         return formattedDateString
     }
     
-    static func checkForTimeDiffrence(dateString: String) -> TimeInterval? {
+    public static func checkForTimeDiffrence(dateString: String) -> TimeInterval? {
         
         let dateString = "2017-11-21T13:39:21+08:00"
         let dateFormatter = DateFormatter()
@@ -204,7 +204,7 @@ extension Date {
         return terminationDuration
     }
     
-    static func checkForTimerDuration(dateString: String) -> DateComponents? {
+    public static func checkForTimerDuration(dateString: String) -> DateComponents? {
         
         let dateString = "2017-11-21T13:39:21+08:00"
         let dateFormatter = DateFormatter()
@@ -220,14 +220,14 @@ extension Date {
         return dateComponents
     }
     
-    static func getDateString(dateString: String, fromDateFormatter : String, toDateFormatter: String) -> String {
+    public static func getDateString(dateString: String, fromDateFormatter : String, toDateFormatter: String) -> String {
         
         let date1 = Date().getDateFromString(dateString: dateString, dateFormatter: fromDateFormatter)
         let formattedDateString = date1.getStringFromDate(date: date1, dateFormatter: toDateFormatter)
         return formattedDateString
     }
     
-    static func getSendDate(dateString: String)-> String{
+    public static func getSendDate(dateString: String)-> String{
         let date1 = Date().getDateFromString(dateString: dateString, dateFormatter: DateFormats.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS)
         let formattedDateString = date1.getStringFromDate(date: date1, dateFormatter: DateFormats.DATE_FORMAT_DD_MMMM_YYYY_HH_MM)
         return formattedDateString

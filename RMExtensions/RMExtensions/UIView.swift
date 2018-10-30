@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension CALayer {
-    func addGradienBorder(colors:[UIColor],width:CGFloat = 1,rect : CGRect) {
+    public func addGradienBorder(colors:[UIColor],width:CGFloat = 1,rect : CGRect) {
         let objgradientLayer = CAGradientLayer()
         objgradientLayer.frame =  rect
         objgradientLayer.colors = colors
@@ -27,7 +27,7 @@ extension CALayer {
 }
 
 extension UIView{
-    func fixInView(_ container: UIView!) -> Void{
+    public func fixInView(_ container: UIView!) -> Void{
         self.translatesAutoresizingMaskIntoConstraints = false;
         self.frame = container.frame;
         container.addSubview(self);

@@ -8,24 +8,24 @@
 
 import UIKit
 
-struct Time {
+public struct Time {
     let start: TimeInterval
     let end: TimeInterval
     let interval: TimeInterval
     
-    init(start: TimeInterval, interval: TimeInterval, end: TimeInterval) {
+    public init(start: TimeInterval, interval: TimeInterval, end: TimeInterval) {
         self.start = start
         self.interval = interval
         self.end = end
     }
     
-    init(startHour: TimeInterval, intervalMinutes: TimeInterval, endHour: TimeInterval) {
+    public init(startHour: TimeInterval, intervalMinutes: TimeInterval, endHour: TimeInterval) {
         self.start = startHour * 60 * 60
         self.end = endHour * 60 * 60
         self.interval = intervalMinutes * 60
     }
     
-    var timeRepresentations: [String] {
+    public var timeRepresentations: [String] {
         let dateComponentFormatter = DateComponentsFormatter()
         dateComponentFormatter.unitsStyle = .positional
         dateComponentFormatter.allowedUnits = [.minute, .hour]
@@ -37,7 +37,7 @@ struct Time {
         }
     }
     
-    var timeIntervals: [TimeInterval]{
+    public var timeIntervals: [TimeInterval]{
         return Array(stride(from: start, through: end, by: interval))
     }
 }

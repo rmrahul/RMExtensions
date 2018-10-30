@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIImage{
-    func alpha(_ value:CGFloat) -> UIImage {
+    public func alpha(_ value:CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
         draw(at: CGPoint.zero, blendMode: .normal, alpha: value)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -19,7 +19,7 @@ extension UIImage{
     }
     
     //https://gist.github.com/schickling/b5d86cb070130f80bb40
-    func fixedOrientation() -> UIImage{
+    public func fixedOrientation() -> UIImage{
         if imageOrientation == .up {
             return self
         }
