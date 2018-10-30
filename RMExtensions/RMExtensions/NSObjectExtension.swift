@@ -15,7 +15,7 @@ extension NSObject {
         do{
             let jsonData = try jsonEncoder.encode(obj)
             let json = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments)
-            return json as! [String : Any]
+            return json as? [String : Any]
         }
         catch{
         }
