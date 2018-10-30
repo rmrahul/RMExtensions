@@ -98,22 +98,6 @@ extension Date {
         return formatter.string(from: date)
     }
     
-    func getStringFromDateString(dateString: String, dateFormatter: String) -> String {
-        
-        let date = self.getDateFromString(dateString: dateString, dateFormatter: DateFormats.DATE_FORMAT_DD_MM_YYYY)
-        let mnthNumber = date.getMonthNumber()
-        
-        let dateStr = self.getStringFromDate(date: date, dateFormatter: dateFormatter)
-        
-        let nsRange = NSMakeRange(3,dateStr.characters.count - 3)
-        let range = dateStr.index(dateStr.startIndex, offsetBy: nsRange.location)..<dateStr.index(dateStr.startIndex, offsetBy: nsRange.location + nsRange.length)
-        
-        let newStr = dateStr[range]
-        
-        let months = self.getMonthsIndex(index: mnthNumber - 1)
-        return (months + newStr)
-    }
-    
     func getStringFromDateString(dateString: String, dateFormatter: String, stringDateFormatter: String) -> String {
         
         let date = self.getDateFromString(dateString: dateString, dateFormatter: stringDateFormatter)
@@ -156,7 +140,7 @@ extension Date {
     
     func getHour() -> Int {
         
-        var calender = Calendar.current
+        let calender = Calendar.current
         //calender.timeZone = TimeZone.init(abbreviation: TIME_ZONE)!
         return calender.component(.hour, from: self)
     }
