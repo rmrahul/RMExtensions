@@ -11,6 +11,8 @@ import UIKit
 extension UITableView {
     public func refresh(){
         self.beginUpdates()
+        UIView.setAnimationsEnabled(false)
         self.endUpdates()
+        UIView.setAnimationsEnabled(true)
     }
 }
